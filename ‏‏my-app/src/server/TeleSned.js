@@ -2,21 +2,23 @@ export const TeleSned = () => {
     const Send = async (message) => {
         const webhookUrl = 'https://hooks.slack.com/services/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';
 
-        const payload = JSON.stringify({
-            text: message,
-        });
+        const payload = {
+            text: message, // محتوى الرسالة
+        };
 
         try {
             const response = await fetch(webhookUrl, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
+                    'Content-Type': 'application/json', // نوع البيانات المرسلة
                 },
-                body: payload,
+                body: JSON.stringify(payload), // تحويل البيانات إلى JSON
             });
 
             if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+                // إذا حدث خطأ HTTP
+                const errorText = await response.text();
+                throw new Error(`HTTP error! Status: ${response.status}, Details: ${errorText}`);
             }
 
             console.log('Message sent successfully:', await response.text());
