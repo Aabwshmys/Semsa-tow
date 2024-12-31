@@ -1,6 +1,6 @@
 export const TeleSned = () => {
     const Send = async (message) => {
-        const webhookUrl = 'https://hooks.slack.com/services/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';
+        const webhookUrl = 'https://hooks.slack.com/services/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';
 
         const payload = {
             text: message, // محتوى الرسالة
